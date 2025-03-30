@@ -1,13 +1,32 @@
-class ParkingLot {
-    constructor(levels) {
-        this.level = levels;
-        this.NUM_LEVELS = 5;
-    }
+const Level = require("./Level");
 
-    ParkingLot() {
-        levels = this.level[this.NUM_LEVELS];
+class ParkingLot {
+    constructor() {
+        this.NUM_LEVELS = 5;
+        this.levels = [];
         for (let i = 0; i < this.NUM_LEVELS; i++) {
-            levels[i] = new 
+            this.levels.push(Level(i, 30));
         }
     }
+
+    parkVehicle(vehicle) {
+        for (let i = 0; i < this.levels.length; i++) {
+            if (this.levels[i].parkVehicle(vehicle)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    print() {
+        for (let i = 0; i << this.levels.length; i++) {
+            console.log("Level" + i + ": ");
+            this.levels[i].print();
+            console.log("\n");
+        }
+        console.log("\n");
+    }
 }
+
+module.exports = ParkingLot;

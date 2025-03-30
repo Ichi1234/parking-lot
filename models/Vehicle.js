@@ -1,42 +1,91 @@
-// models/Item.js
-// models/Vehicle.js
+const VehicleSize = require("./VehicleSize");
+const ParkingSpot = require("./ParkingSpot");
 
-class Vehicle {
-  constructor(licensePlate, spotsNeeded, size) {
-      this.parkingSpots = [];
-      this.licensePlate = licensePlate;
-      this.spotsNeeded = spotsNeeded;
-      this.size = size;
-  }
+class Level {
+    static SPOTS_PER_ROW = 10;
 
-  // Getters
-  getSpotsNeeded() {
-      return this.spotsNeeded;
-  }
+    constructor(floor, numberSpots) {
+        this.floor = floor;
+        this.spots = [];
+        this.availableSpots = numberSpots;
+        
+        let largeSpots = Math.floor(numberSpots / 4);
+        let bikeSpots = Math.floor(numberSpots / 4);
+        let compactSpots = numberSpots - largeSpots - bikeSpots;
 
-  getSize() {
-      return this.size;
-  }
+        for (let i = 0; i < numberSpots; i++) {
+            let sz = VehicleSize.Motorcycle;
+            if (i < largeSpots) {
+                sz = VehicleSize.Large;
+            } else if (i < largeSpots + compactSpots) {
+                sz = VehicleSize.Compact;
+            }
+            let row = Math.floor(i / Level.SPOTS_PER_ROW);
+            this.spots.push(new ParkingSpot(this, row, i, sz));
+        }
+    }
 
-  // Park vehicle in this spot
-  parkInSpot(spot) {
-      this.parkingSpots.push(spot);
-  }
+    availableSpots() {
+        return this.availableSpots;
+    }
 
-  // Remove car from spot, and notify spot that it's gone
-  clearSpots() {
-      this.parkingSpots.forEach(spot => spot.removeVehicle());
-      this.parkingSpots = [];
-  }
+    parkVehicle(vehicle) {
+        if (this.availableSpots < vehicle.spotsNeeded) {
+            return false;
+        }
+        let spotNumber = this.findAvailableSpots(vehicle);
+        if (spotNumber < 0) {
+            return false;
+        }
+        return this.parkStartingAtSpot(spotNumber, vehicle);
+    }
 
-  // Abstract methods (to be implemented by subclasses)
-  canFitInSpot(spot) {
-      throw new Error("Method 'canFitInSpot()' must be implemented.");
-  }
+    parkStartingAtSpot(spotNumber, vehicle) {
+        vehicle.clearSpots();
+        let success = true;
+        for (let i = spotNumber; i < spotNumber + vehicle.spotsNeeded; i++) {
+            success &= this.spots[i].park(vehicle);
+        }
+        this.availableSpots -= vehicle.spotsNeeded;
+        return success;
+    }
 
-  print() {
-      throw new Error("Method 'print()' must be implemented.");
-  }
+    findAvailableSpots(vehicle) {
+        let spotsNeeded = vehicle.spotsNeeded;
+        let lastRow = -1;
+        let spotsFound = 0;
+        for (let i = 0; i < this.spots.length; i++) {
+            let spot = this.spots[i];
+            if (lastRow !== spot.getRow()) {
+                spotsFound = 0;
+                lastRow = spot.getRow();
+            }
+            if (spot.canFitVehicle(vehicle)) {
+                spotsFound++;
+            } else {
+                spotsFound = 0;
+            }
+            if (spotsFound === spotsNeeded) {
+                return i - (spotsNeeded - 1);
+            }
+        }
+        return -1;
+    }
+
+    print() {
+        let lastRow = -1;
+        for (let spot of this.spots) {
+            if (spot.getRow() !== lastRow) {
+                process.stdout.write("  ");
+                lastRow = spot.getRow();
+            }
+            spot.print();
+        }
+    }
+
+    spotFreed() {
+        this.availableSpots++;
+    }
 }
 
-module.exports = Vehicle;
+module.exports = Level;

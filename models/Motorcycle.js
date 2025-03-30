@@ -13,3 +13,5 @@ class Motorcycle extends Vehicle {
         console.log('M');
     }
 }
+
+module.exports = Motorcycle;

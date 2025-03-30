@@ -3,3 +3,5 @@ const VehicleSize = Object.freeze({
     Compact: 'Compact',
     Large: 'Large'
 });
+
+module.exports = VehicleSize;

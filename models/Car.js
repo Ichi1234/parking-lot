@@ -13,3 +13,5 @@ class Car extends Vehicle {
         console.log("C");
     }
 }
+
+module.exports = Car;

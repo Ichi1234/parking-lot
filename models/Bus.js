@@ -1,4 +1,5 @@
 const Vehicle = require("./Vehicle");
+const VehicleSize = require("./VehicleSize");
 
 class Bus extends Vehicle {
     constructor(licensePlate) {
@@ -13,3 +14,5 @@ class Bus extends Vehicle {
         console.log('B');
     }
 }
+
+module.exports = Bus;
