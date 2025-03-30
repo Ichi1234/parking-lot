@@ -1,5 +1,4 @@
-// models/Item.js
-// models/Vehicle.js
+
 
 class Vehicle {
     constructor(licensePlate, spotsNeeded, size) {
@@ -9,7 +8,6 @@ class Vehicle {
         this.size = size;
     }
   
-    // Getters
     getSpotsNeeded() {
         return this.spotsNeeded;
     }
@@ -18,12 +16,10 @@ class Vehicle {
         return this.size;
     }
   
-    // Park vehicle in this spot
     parkInSpot(spot) {
         this.parkingSpots.push(spot);
     }
   
-    // Remove car from spot, and notify spot that it's gone
     clearSpots() {
         this.parkingSpots.forEach(spot => spot.removeVehicle());
         this.parkingSpots = [];
