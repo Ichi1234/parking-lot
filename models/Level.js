@@ -22,33 +22,33 @@ class Level {
                 sz = VehicleSize.Compact;
             }
             let row = i / SPOTS_PER_ROW;
-            this.spots.push(ParkingSpot(this, row, i, sz));
+            this.spots.push(new ParkingSpot(this, row, i, sz));
         }
         this.availableSpots = numberSpots;
     }
 
-    availableSpots() {
+    getAvailableSpots() {
         return this.availableSpots;
     }
 
     parkVehicle(vehicle) {
-        if (availableSpots() < this.vehicle.getSpotsNeeded()) {
+        if (this.getAvailableSpots() < vehicle.getSpotsNeeded()) {
             return false;
         }
 
-        let spotNumber = findAvailableSpots(vehicle);
+        let spotNumber = this.findAvailableSpots(vehicle);
         if (spotNumber < 0) {
             return false;
         }
-        return parkStartingAtSpot(spotNumber, vehicle);
+        return this.parkStartingAtSpot(spotNumber, vehicle);
     }
 
     parkStartingAtSpot(spotNumber, vehicle) {
-        this.vehicle.clearSpots();
+        vehicle.clearSpots();
         let success = true;
-        for (let i = spotNumber; i < spotNumber + this.vehicle.spotsNeeded; i++) {
-            success &= this.spots.push(vehicle);
-        }
+        for (let i = spotNumber; i < spotNumber + vehicle.spotsNeeded; i++) {
+            success &= this.spots[i].park(vehicle);
+        }        
         this.availableSpots -= vehicle.spotsNeeded
         return success;
     }
@@ -58,7 +58,7 @@ class Level {
         let lastRow = -1;
         let spotsFound = 0;
         for (let i = 0; i < this.spots.length; i++) {
-            spot = this.spots[i]
+            let spot = this.spots[i]
             if (lastRow != spot.getRow()) {
                 spotsFound = 0;
                 lastRow = spot.getRow();

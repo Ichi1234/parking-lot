@@ -5,7 +5,7 @@ class ParkingLot {
         this.NUM_LEVELS = 5;
         this.levels = [];
         for (let i = 0; i < this.NUM_LEVELS; i++) {
-            this.levels.push(Level(i, 30));
+            this.levels.push(new Level(i, 30));
         }
     }
 

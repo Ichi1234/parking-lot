@@ -1,4 +1,6 @@
 const Vehicle = require("./Vehicle");
+const VehicleSize = require("./VehicleSize");
+
 
 class Motorcycle extends Vehicle {
     constructor(licensePlate) {
