@@ -26,6 +26,7 @@ class ParkingLot {
             console.log("\n");
         }
         console.log("\n");
+        console.log(this.levels.length)
     }
 }
 
