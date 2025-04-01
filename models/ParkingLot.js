@@ -11,6 +11,20 @@ class ParkingLot {
         }
     }
 
+    parkVehicle(vehicle) {
+        for (let l = 0; l < this.levels.length; l++) {
+            if (this.levels[l].isNotFull()) {
+                let parked = this.levels[l].parkVehicle(vehicle);
+
+                if (parked) {
+                    break;
+                }
+                console.log("Level: " + l + " don't have the space for " + vehicle.print())
+
+            }
+        }
+    }
+
     print() {
         for (let l = 0; l < this.levels.length; l++) {
             console.log("Level: " + l + "\n");

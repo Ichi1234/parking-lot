@@ -15,6 +15,7 @@ class Main {
     }
 
     test() {
+        this.lot.parkVehicle(new Bus(1));
         this.lot.print();
     }
 }

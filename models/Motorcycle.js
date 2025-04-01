@@ -12,7 +12,7 @@ class Motorcycle extends Vehicle {
     }
 
     print() {
-        console.log('Morcycle');
+       return 'Morcycle';
     }
 }
 

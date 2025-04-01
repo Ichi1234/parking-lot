@@ -10,8 +10,20 @@ class ParkingSpot {
         this.vehicle = null;
     }
 
+    getSize() {
+        return this.spotSize;
+    }
+
+    getVehicle() {
+        return this.vehicle
+    }
+
+    setVehicle(vehicle) {
+        this.vehicle = vehicle;
+    }
+
     print() {
-        console.log("Level: " + this.level.floor + " Row: " + this.row + " SpotSize: " + this.spotSize + " Current Vehicle: " + this.vehicle);
+        console.log("Level: " + this.level.floor + " Row: " + this.row + " SpotSize: " + this.spotSize + " Current Vehicle: " +  (this.vehicle ? this.vehicle.print() : "None"));
     }
 }
 

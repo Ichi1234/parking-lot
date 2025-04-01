@@ -11,7 +11,7 @@ class Car extends Vehicle {
     }
 
     print() {
-        console.log("Car");
+        return "Car";
     }
 }
 
