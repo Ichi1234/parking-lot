@@ -17,6 +17,8 @@ class Main {
     test() {
         for (let licensePlate = 0; licensePlate < 10; licensePlate++) {
             this.lot.parkVehicle(new Bus(licensePlate));
+            this.lot.parkVehicle(new Motorcycle(licensePlate));
+            this.lot.parkVehicle(new Car(licensePlate));
         }
         this.lot.print();
     }
