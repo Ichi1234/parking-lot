@@ -17,7 +17,7 @@ class ParkingLot {
                 let parked = this.levels[l].parkVehicle(vehicle);
 
                 if (parked) {
-                    break;
+                    return true;
                 }
                 console.log("Level: " + l + " don't have the space for " + vehicle.print())
             
@@ -30,6 +30,8 @@ class ParkingLot {
                 }
             }
         }
+
+        return false;
     }
 
     print() {
