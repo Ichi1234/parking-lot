@@ -9,25 +9,6 @@ class ParkingLot {
         }
     }
 
-    parkVehicle(vehicle) {
-        for (let i = 0; i < this.levels.length; i++) {
-            if (this.levels[i].parkVehicle(vehicle)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    print() {
-        for (let i = 0; i < this.levels.length; i++) {
-            console.log("Level" + i + ": ");
-            this.levels[i].print();
-            console.log("\n");
-        }
-        console.log("\n");
-        // console.log("Length of the level: " + this.levels.length)
-    }
 }
 
 module.exports = ParkingLot;
