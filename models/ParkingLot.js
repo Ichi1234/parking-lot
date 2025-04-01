@@ -2,7 +2,7 @@ const Level = require("./Level");
 
 class ParkingLot {
     constructor() {
-        this.NUM_LEVELS = 5;
+        this.NUM_LEVELS = 4;
         this.levels = [];
         for (let i = 0; i < this.NUM_LEVELS; i++) {
             this.levels.push(new Level(i, 30));
@@ -20,13 +20,13 @@ class ParkingLot {
     }
 
     print() {
-        for (let i = 0; i << this.levels.length; i++) {
+        for (let i = 0; i < this.levels.length; i++) {
             console.log("Level" + i + ": ");
             this.levels[i].print();
             console.log("\n");
         }
         console.log("\n");
-        console.log(this.levels.length)
+        // console.log("Length of the level: " + this.levels.length)
     }
 }
 

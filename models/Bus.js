@@ -11,7 +11,7 @@ class Bus extends Vehicle {
     }
 
     print() {
-        console.log('B');
+        console.log('Bus');
     }
 }
 
