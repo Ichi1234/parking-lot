@@ -20,7 +20,14 @@ class ParkingLot {
                     break;
                 }
                 console.log("Level: " + l + " don't have the space for " + vehicle.print())
+            
+                if (l == this.levels.length - 1) {
+                    console.log("My parking spot doesn't have room for your car. Please disappear into the void.")
+                }
 
+                else {
+                    console.log("Level: " + l + " is full. GO TO NEXT THE FLOOR REEEEEEEE");
+                }
             }
         }
     }
