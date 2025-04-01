@@ -6,15 +6,15 @@ const Level = require("./Level");
 
 class Main {
     constructor() {
-        this.lot = new Level(1, 30);
-        this.runSimulation();
+        this.lot = new ParkingLot();
+        this.test();
     }
 
     randomIntInRange(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    runSimulation() {
+    test() {
         this.lot.print();
     }
 }
