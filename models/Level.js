@@ -5,30 +5,31 @@ class Level {
     constructor(flr, numberSpots) {
         this.floor = flr;
         this.spots = [];
-        this.availableSpots = 0;
+        this.availableSpots = numberSpots;
 
         let SPOTS_PER_ROW = 10;
         let largeSpots = numberSpots / 4;
-        let bikeSpots = numberSpots / 8;
-        let compactSpots = numberSpots - largeSpots - bikeSpots
-    
+            
         for (let i = 0; i < numberSpots; i++) {
-            let sz = VehicleSize.Motorcycle;
+            let spotSize = VehicleSize.Motorcycle;
             if (i < largeSpots) {
-                sz = VehicleSize.Large;
+                spotSize = VehicleSize.Large;
             }
 
-            else if (i < largeSpots + compactSpots) {
-                sz = VehicleSize.Compact;
+            else {
+                spotSize = VehicleSize.Compact;
             }
 
             let row = Math.floor(i / SPOTS_PER_ROW);
-            this.spots.push(new ParkingSpot(this, row, i, sz));
+            this.spots.push(new ParkingSpot(this, row, i, spotSize));
         }
-        this.availableSpots = numberSpots;
     }
 
-    
+    print() {
+        for (let s = 0; s < this.spots.length; s++) {
+            this.spots[s].print();
+        }
+    }
 }
 
 module.exports = Level;

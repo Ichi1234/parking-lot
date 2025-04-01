@@ -10,7 +10,9 @@ class ParkingSpot {
         this.vehicle = null;
     }
 
-    
+    print() {
+        console.log("Level: " + this.level.floor + " Row: " + this.row + " SpotSize: " + this.spotSize);
+    }
 }
 
 module.exports = ParkingSpot;
