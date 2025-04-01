@@ -16,15 +16,6 @@ class Vehicle {
         return this.size;
     }
   
-    parkInSpot(spot) {
-        this.parkingSpots.push(spot);
-    }
-  
-    clearSpots() {
-        this.parkingSpots.forEach(spot => spot.removeVehicle());
-        this.parkingSpots = [];
-    }
-  
     // Abstract methods (to be implemented by subclasses)
     canFitInSpot(spot) {
         throw new Error("Method 'canFitInSpot()' must be implemented.");

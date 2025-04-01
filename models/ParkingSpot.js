@@ -23,7 +23,7 @@ class ParkingSpot {
     }
 
     print() {
-        console.log("Level: " + this.level.floor + " Row: " + this.row + " SpotSize: " + this.spotSize + " Current Vehicle: " +  (this.vehicle ? this.vehicle.print() : "None"));
+        console.log("Level: " + this.level.floor + " Row: " + this.row + " spotNumber: " + this.spotNumber + " SpotSize: " + this.spotSize + " Current Vehicle: " +  (this.vehicle ? this.vehicle.print() : "None"));
     }
 }
 
