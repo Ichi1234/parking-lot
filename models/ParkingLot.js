@@ -3,7 +3,7 @@ const Level = require("./Level");
 class ParkingLot {
     constructor() {
         this.NUM_LEVELS = 3;
-        this.NUM_SPOT_EACH_LEVEL = 5;
+        this.NUM_SPOT_EACH_LEVEL = 20;
 
         this.levels = [];
         for (let i = 0; i < this.NUM_LEVELS; i++) {
@@ -32,6 +32,14 @@ class ParkingLot {
         }
 
         return false;
+    }
+
+    sentDataToFrontend() {
+        let eachLevelSpots = [];
+        for (let l = 0; l < this.levels.length; l++) {
+            eachLevelSpots.push(this.levels[l].sentDataToFrontend()); 
+        }
+        return eachLevelSpots;
     }
 
     insertSpots(spot, vehicle) {

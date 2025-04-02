@@ -50,6 +50,15 @@ class Level {
             this.spots[s].print();
         }
     }
+
+    sentDataToFrontend() {
+        let spotsData = [];
+        for (let s = 0; s < this.spots.length; s++) {
+            spotsData.push(this.spots[s].sentDataToFrontend());
+        }
+
+        return spotsData;
+    }
 }
 
 module.exports = Level;

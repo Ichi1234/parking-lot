@@ -101,15 +101,6 @@ export default function ParkingForm() {
 
   return (
     <div>
-
-      <ul>
-        {vehicle.map((vehicle) => (
-          <li key={vehicle._id}>
-            Floor: {vehicle.floor}, Spot: {vehicle.spotID}, 
-            License Plate: {vehicle.licensePlate}, Type: {vehicle.carType}
-          </li>
-        ))}
-      </ul>
       
       <h1>Car Parking Simulator</h1>
       <div className="flex">
@@ -146,6 +137,32 @@ export default function ParkingForm() {
 
 
             </div>
+
+            <table className="border-collapse border border-gray-400 w-[80vh]">
+              <thead>
+                <tr>
+                  <th className="border border-gray-400 px-4 py-2">Level</th>
+                  <th className="border border-gray-400 px-4 py-2">Row</th>
+                  <th className="border border-gray-400 px-4 py-2">Spot</th>
+                  <th className="border border-gray-400 px-4 py-2">Size</th>
+                  <th className="border border-gray-400 px-4 py-2">Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {vehicle.map((floorData, floorIndex) =>
+                  floorData.map((spot, spotIndex) => (
+                    <tr key={`${floorIndex}-${spotIndex}`} className="border border-gray-400">
+                      <td className="border border-gray-400 px-4 py-2">{spot.floor}</td>
+                      <td className="border border-gray-400 px-4 py-2">{spot.row}</td>
+                      <td className="border border-gray-400 px-4 py-2">{spot.spotID}</td>
+                      <td className="border border-gray-400 px-4 py-2">{spot.spotSize}</td>
+                      <td className="border border-gray-400 px-4 py-2">{spot.carType}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+
         </div>
     );
 }

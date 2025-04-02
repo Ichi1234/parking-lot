@@ -14,6 +14,10 @@ class ParkingManager {
         return ParkingManager.instance;
     }
 
+    displayTheSpot() {
+        return this.lot.sentDataToFrontend();
+    }
+
     addParkingSpot(licensePlate, carType) {
        console.log(carType); 
        return this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
@@ -34,10 +38,7 @@ class ParkingManager {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    seeTheSpot() {
-        this.lot.print();
-
-    }
+    
 
     test() {
         for (let licensePlate = 0; licensePlate < 10; licensePlate++) {
