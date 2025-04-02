@@ -32,9 +32,9 @@ class Level {
     parkVehicle(vehicle) {
         for (let s = 0; s < this.spots.length; s++) {
             if (vehicle.canFitInSpot(this.spots[s]) && this.spots[s].getVehicle() == null) {
-                this.spots[s].setVehicle(vehicle);
                 this.availableSpots--;
-                return true
+                return this.spots[s].setVehicle(vehicle);
+
             }
         }
         return false;

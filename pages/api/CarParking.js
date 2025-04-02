@@ -13,6 +13,7 @@
 //   }
 
 import dbConnect from '../../lib/mongodb';
+import ParkingManager from '../../models/ParkingManager';
 import Parking from '../../models/ParkingSchema';
 
 export default async function handler(req, res) {
@@ -32,10 +33,16 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const carData = await {"licensePlate": req.body.licensePlate, "carType": req.body.type}
-        console.log("Yes the data is here: " + carData.licensePlate + " " + carData.carType);
+        // console.log("Yes the data is here: " + carData.licensePlate + " " + carData.carType);
         
+        const dataForMongo = ParkingManager.addParkingSpot(carData.licensePlate, carData.carType);
+        if (dataForMongo) {
+          console.log(`spotID: ${dataForMongo.spotID} floor: ${dataForMongo.floor} licensePlate: ${dataForMongo.licensePlate} carType: ${dataForMongo.carType}`)
+        }
+
         res.status(201).json({ success: true, data: carData });
       } catch (error) {
+        console.log(error)
         res.status(400).json({ success: false });
       }
       break;

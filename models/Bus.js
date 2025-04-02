@@ -10,7 +10,7 @@ class Bus extends Vehicle {
         return spot.getSize() === VehicleSize.Large;
     }
 
-    print() {
+    getVehicleName() {
         return 'Bus';
     }
 }

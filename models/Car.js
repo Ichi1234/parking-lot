@@ -10,7 +10,7 @@ class Car extends Vehicle {
         return spot.getSize() == VehicleSize.Compact || spot.getSize() == VehicleSize.Large;
     }
 
-    print() {
+    getVehicleName() {
         return "Car";
     }
 }

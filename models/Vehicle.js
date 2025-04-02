@@ -6,6 +6,7 @@ class Vehicle {
         this.licensePlate = licensePlate;
         this.spotsNeeded = spotsNeeded;
         this.size = size;
+
     }
   
     getSpotsNeeded() {
@@ -21,7 +22,7 @@ class Vehicle {
         throw new Error("Method 'canFitInSpot()' must be implemented.");
     }
   
-    print() {
+    getVehicleName() {
         throw new Error("Method 'print()' must be implemented.");
     }
   }

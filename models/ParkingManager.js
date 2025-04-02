@@ -15,7 +15,7 @@ class ParkingManager {
     }
 
     addParkingSpot(licensePlate, carType) {
-        this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
+       return this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
     }
 
     randomIntInRange(min, max) {

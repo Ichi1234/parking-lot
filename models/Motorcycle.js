@@ -11,7 +11,7 @@ class Motorcycle extends Vehicle {
         return true;
     }
 
-    print() {
+    getVehicleName() {
        return 'Morcycle';
     }
 }

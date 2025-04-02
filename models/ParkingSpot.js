@@ -20,10 +20,11 @@ class ParkingSpot {
 
     setVehicle(vehicle) {
         this.vehicle = vehicle;
+        return {"spotID": this.spotNumber, "floor": this.level.floor, "licensePlate": this.vehicle.licensePlate, "carType": this.vehicle.getVehicleName()}
     }
 
     print() {
-        console.log("Level: " + this.level.floor + " Row: " + this.row + " spotNumber: " + this.spotNumber + " SpotSize: " + this.spotSize + " Current Vehicle: " +  (this.vehicle ? this.vehicle.print() : "None"));
+        console.log("Level: " + this.level.floor + " Row: " + this.row + " spotNumber: " + this.spotNumber + " SpotSize: " + this.spotSize + " Current Vehicle: " +  (this.vehicle ? this.vehicle.getVehicleName() : "None"));
     }
 }
 

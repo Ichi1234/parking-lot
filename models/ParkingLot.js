@@ -17,9 +17,9 @@ class ParkingLot {
                 let parked = this.levels[l].parkVehicle(vehicle);
 
                 if (parked) {
-                    return true;
+                    return parked;
                 }
-                console.log("Level: " + l + " don't have the space for " + vehicle.print())
+                console.log("Level: " + l + " don't have the space for " + vehicle.getVehicleName())
             
                 if (l == this.levels.length - 1) {
                     console.log("My parking spot doesn't have room for your car. Please disappear into the void.")
