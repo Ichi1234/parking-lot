@@ -32,15 +32,22 @@ export default async function handler(req, res) {
     //   break;
     case 'POST':
       try {
-        const carData = await {"licensePlate": req.body.licensePlate, "carType": req.body.type}
+        const carData = {"licensePlate": req.body.licensePlate, "carType": req.body.type}
         // console.log("Yes the data is here: " + carData.licensePlate + " " + carData.carType);
         
         const dataForMongo = ParkingManager.addParkingSpot(carData.licensePlate, carData.carType);
-        if (dataForMongo) {
-          console.log(`spotID: ${dataForMongo.spotID} floor: ${dataForMongo.floor} licensePlate: ${dataForMongo.licensePlate} carType: ${dataForMongo.carType}`)
+
+        if (!dataForMongo) {
+          res.status(400).json({ success: false, data: dataForMongo });
+          break;
         }
 
-        res.status(201).json({ success: true, data: carData });
+        console.log(`spotID: ${dataForMongo.spotID} floor: ${dataForMongo.floor} licensePlate: ${dataForMongo.licensePlate} carType: ${dataForMongo.carType}`)
+        const items = await Parking.create(dataForMongo);
+
+        console.log(items)
+
+        res.status(201).json({ success: true, data: items });
       } catch (error) {
         console.log(error)
         res.status(400).json({ success: false });

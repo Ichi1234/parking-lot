@@ -18,8 +18,21 @@ class ParkingManager {
        return this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
     }
 
+    loadSpotFromData(spotData) {
+
+    }
+
+    carByeBye(spot) {
+        
+    }
+
     randomIntInRange(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    seeTheSpot() {
+        this.lot.print();
+
     }
 
     test() {
