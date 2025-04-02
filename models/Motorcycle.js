@@ -12,7 +12,7 @@ class Motorcycle extends Vehicle {
     }
 
     getVehicleName() {
-       return 'Morcycle';
+       return 'Motorcycle';
     }
 }
 

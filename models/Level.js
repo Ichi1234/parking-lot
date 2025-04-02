@@ -40,6 +40,11 @@ class Level {
         return false;
     }
 
+    insertSpots(spotID, vehicle) {
+        this.availableSpots--;
+        this.spots[spotID].setVehicle(vehicle);
+    }
+
     print() {
         for (let s = 0; s < this.spots.length; s++) {
             this.spots[s].print();

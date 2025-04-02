@@ -4,25 +4,25 @@ const ParkingSchema = new mongoose.Schema({
 
   floor: {
     type: Number,
-    require: true,
+    required: true,
   },
 
   spotID: {
     type: Number,
-    require: true,
+    required: true,
   },
 
   licensePlate: {
     type: String,
-    require: true,
+    required: true,
   },
 
   carType: {
     type: String,
-    require: true,
+    required: true,
   },
 
  
 });
 
-export default mongoose.models.ParkingSchema || mongoose.model('Parking', ParkingSchema);
+export default mongoose.models.Parking  || mongoose.model('Parking', ParkingSchema);

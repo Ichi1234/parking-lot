@@ -34,6 +34,10 @@ class ParkingLot {
         return false;
     }
 
+    insertSpots(spot, vehicle) {
+        this.levels[spot.floor].insertSpots(spot.spotID, vehicle);
+    }
+
     print() {
         for (let l = 0; l < this.levels.length; l++) {
             console.log("Level: " + l + "\n");

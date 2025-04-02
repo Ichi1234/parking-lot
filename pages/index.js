@@ -4,15 +4,15 @@
 //   const [items, setItems] = useState([]);
 //   const [form, setForm] = useState({ name: '', description: '' });
 
-//   useEffect(() => {
-//     fetchItems();
-//   }, []);
+  // useEffect(() => {
+  //   fetchItems();
+  // }, []);
 
-//   const fetchItems = async () => {
-//     const res = await fetch('/api/items');
-//     const data = await res.json();
-//     setItems(data.data);
-//   };
+  // const fetchItems = async () => {
+  //   const res = await fetch('/api/items');
+  //   const data = await res.json();
+  //   setItems(data.data);
+  // };
 
 //   const handleChange = (e) => {
 //     setForm({ ...form, [e.target.name]: e.target.value });
@@ -54,21 +54,33 @@
 //         <button type="submit">Add Item</button>
 //       </form>
 
-//       <ul>
-//         {items.map((item) => (
-//           <li key={item._id}>
-//             {item.name} - {item.description}
-//           </li>
-//         ))}
-//       </ul>
+      // <ul>
+      //   {items.map((item) => (
+      //     <li key={item._id}>
+      //       {item.name} - {item.description}
+      //     </li>
+      //   ))}
+      // </ul>
 //     </div>
 //   );
 // }
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ParkingForm() {
-  const [form, setForm] = useState({ licensePlate: "", type: "" });
+  const [vehicle, setVehicle] = useState([]);
+  const [form, setForm] = useState({ licensePlate: "", type: "Motorcycle" });
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const fetchItems = async () => {
+    const res = await fetch('/api/CarParking');
+    const data = await res.json();
+    setVehicle(data.data);
+  };
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -89,6 +101,15 @@ export default function ParkingForm() {
 
   return (
     <div>
+
+      <ul>
+        {vehicle.map((vehicle) => (
+          <li key={vehicle._id}>
+            Floor: {vehicle.floor}, Spot: {vehicle.spotID}, 
+            License Plate: {vehicle.licensePlate}, Type: {vehicle.carType}
+          </li>
+        ))}
+      </ul>
       
       <h1>Car Parking Simulator</h1>
       <div className="flex">
@@ -102,9 +123,9 @@ export default function ParkingForm() {
         />
 
         <select name="type" id="type" value={form.type} onChange={handleChange}>
-          <option value="motorcycle">Motorcycle</option>
-          <option value="car">Car</option>
-          <option value="bus">Bus</option>
+          <option value="Motorcycle">Motorcycle</option>
+          <option value="Car">Car</option>
+          <option value="Bus">Bus</option>
         </select>
 
         <button onClick={handleSubmit}>Park</button>
@@ -114,9 +135,9 @@ export default function ParkingForm() {
 
               <input type="text" placeholder="License Plate"></input>
               <select name="type" id="type">
-                <option value="motorcycle">Motorcycle</option>
-                <option value="car">Car</option>
-                <option value="bus">Bus</option>
+                <option value="Motorcycle">Motorcycle</option>
+                <option value="Car">Car</option>
+                <option value="Bus">Bus</option>
               </select>
 
               <form>

@@ -7,7 +7,7 @@ class ParkingManager {
     constructor() {
         if (!ParkingManager.instance) {
             this.lot = new ParkingLot();
-            this.eachCarType = {"car": Car, "bus": Bus, "motorcycle": Motorcycle}
+            this.eachCarType = {"Car": Car, "Bus": Bus, "Motorcycle": Motorcycle}
             ParkingManager.instance = this
             // this.test();
         }
@@ -15,15 +15,19 @@ class ParkingManager {
     }
 
     addParkingSpot(licensePlate, carType) {
+       console.log(carType); 
        return this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
     }
 
-    loadSpotFromData(spotData) {
-
+    insertSpotsFromData(spotData) {
+        for (let spot of spotData) {
+            // console.log(this.eachCarType[spot.carType]);
+            this.lot.insertSpots(spot, new this.eachCarType[spot.carType](spot.licensePlate))
+        }
     }
 
     carByeBye(spot) {
-        
+
     }
 
     randomIntInRange(min, max) {
