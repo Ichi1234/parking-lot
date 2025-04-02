@@ -9,7 +9,6 @@ class ParkingManager {
             this.lot = new ParkingLot();
             this.eachCarType = {"Car": Car, "Bus": Bus, "Motorcycle": Motorcycle}
             ParkingManager.instance = this
-            // this.test();
         }
         return ParkingManager.instance;
     }

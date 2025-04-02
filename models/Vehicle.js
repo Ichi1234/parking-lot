@@ -1,16 +1,11 @@
 
 
 class Vehicle {
-    constructor(licensePlate, spotsNeeded, size) {
+    constructor(licensePlate, size) {
         this.parkingSpots = [];
         this.licensePlate = licensePlate;
-        this.spotsNeeded = spotsNeeded;
         this.size = size;
 
-    }
-  
-    getSpotsNeeded() {
-        return this.spotsNeeded;
     }
   
     getSize() {
@@ -25,6 +20,6 @@ class Vehicle {
     getVehicleName() {
         throw new Error("Method 'print()' must be implemented.");
     }
-  }
+}
   
-  module.exports = Vehicle;
+module.exports = Vehicle;

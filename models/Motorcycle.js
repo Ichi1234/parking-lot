@@ -4,7 +4,7 @@ const VehicleSize = require("./VehicleSize");
 
 class Motorcycle extends Vehicle {
     constructor(licensePlate) {
-        super(licensePlate, 1, VehicleSize.Motorcycle);
+        super(licensePlate, VehicleSize.Motorcycle);
     }
 
     canFitInSpot(spot) {

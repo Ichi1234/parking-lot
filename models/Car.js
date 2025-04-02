@@ -3,7 +3,7 @@ const VehicleSize = require("./VehicleSize");
 
 class Car extends Vehicle {
     constructor(licensePlate) {
-        super(licensePlate, 3, VehicleSize.Compact);
+        super(licensePlate, VehicleSize.Compact);
     }
 
     canFitInSpot(spot) {
