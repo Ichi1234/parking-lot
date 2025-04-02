@@ -33,16 +33,6 @@ class ParkingManager {
         }
     }
 
-    carByeBye(spot) {
-
-    }
-
-    randomIntInRange(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    
-
     test() {
         for (let licensePlate = 0; licensePlate < 10; licensePlate++) {
             this.lot.parkVehicle(new Bus(licensePlate));
