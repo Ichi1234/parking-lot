@@ -33,6 +33,7 @@ export default async function handler(req, res) {
       try {
         const carData = await {"licensePlate": req.body.licensePlate, "carType": req.body.type}
         console.log("Yes the data is here: " + carData.licensePlate + " " + carData.carType);
+        
         res.status(201).json({ success: true, data: carData });
       } catch (error) {
         res.status(400).json({ success: false });

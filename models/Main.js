@@ -3,19 +3,19 @@ const Bus = require("./Bus");
 const Car = require("./Car");
 const Motorcycle = require("./Motorcycle");
 
-class Main {
+class ParkingManager {
     constructor() {
-        if (!Main.instance) {
+        if (!ParkingManager.instance) {
             this.lot = new ParkingLot();
             this.eachCarType = {"car": Car, "bus": Bus, "motorcycle": Motorcycle}
-            Main.instance = this
+            ParkingManager.instance = this
             // this.test();
         }
         return ParkingManager.instance;
     }
 
-    addParkingSpot(carType) {
-        this.lot.parkVehicle(new this.eachCarType[carType]());
+    addParkingSpot(licensePlate, carType) {
+        this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
     }
 
     randomIntInRange(min, max) {
@@ -32,4 +32,4 @@ class Main {
     }
 }
 
-new Main();
+module.exports = new ParkingManager();
