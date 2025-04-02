@@ -3,12 +3,12 @@ import mongoose from 'mongoose';
 const ParkingSchema = new mongoose.Schema({
 
   floor: {
-    type: Int8Array,
+    type: Number,
     require: true,
   },
 
   spotID: {
-    type: Int8Array,
+    type: Number,
     require: true,
   },
 

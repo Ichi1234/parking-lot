@@ -2,12 +2,20 @@ const ParkingLot = require("./ParkingLot");
 const Bus = require("./Bus");
 const Car = require("./Car");
 const Motorcycle = require("./Motorcycle");
-const Level = require("./Level");
 
 class Main {
     constructor() {
-        this.lot = new ParkingLot();
-        this.test();
+        if (!Main.instance) {
+            this.lot = new ParkingLot();
+            this.eachCarType = {"car": Car, "bus": Bus, "motorcycle": Motorcycle}
+            Main.instance = this
+            // this.test();
+        }
+        return ParkingManager.instance;
+    }
+
+    addParkingSpot(carType) {
+        this.lot.parkVehicle(new this.eachCarType[carType]());
     }
 
     randomIntInRange(min, max) {

@@ -65,41 +65,50 @@
 //   );
 // }
 
+import { useState } from "react";
 
+export default function ParkingForm() {
+  const [form, setForm] = useState({ licensePlate: "", type: "" });
 
-import { useEffect, useState } from "react";
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
-export default function ProductsPage() {
-    const [products, setProducts] = useState([]);
+  const handleSubmit = async () => {
+    const res = await fetch("/api/CarParking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
 
-    useEffect(() => {
-        fetch("/api/car_parking")
-            .then((res) => res.json())
-            .then((data) => setProducts(data))
-            .catch((err) => console.error("Error fetching products:", err));
-    }, []);
+    const data = await res.json();
+    console.log("Response:", data);
+  };
 
-    return (
-        <div>
-            <h1>Car Parking Simulator</h1>
+  return (
+    <div>
+      
+      <h1>Car Parking Simulator</h1>
+      <div className="flex">
+        <h3>Parking The Car: </h3>
+        <input
+          type="text"
+          name="licensePlate"
+          placeholder="License Plate"
+          value={form.licensePlate}
+          onChange={handleChange}
+        />
 
-            <div className="flex">
+        <select name="type" id="type" value={form.type} onChange={handleChange}>
+          <option value="motorcycle">Motorcycle</option>
+          <option value="car">Car</option>
+          <option value="bus">Bus</option>
+        </select>
 
-              <h3>Park The Car:</h3>
-              <input type="text" placeholder="License Plate"></input>
-
-              <select name="type" id="type">
-                <option value="motorcycle">Motorcycle</option>
-                <option value="car">Car</option>
-                <option value="bus">Bus</option>
-              </select>
-
-              <form>
-                <input type="button" value="Park"></input>
-              </form>
-
-            </div>
-
+        <button onClick={handleSubmit}>Park</button>
+      </div>
             <div className="flex">
               <h3>Go Away The Car:</h3>
 

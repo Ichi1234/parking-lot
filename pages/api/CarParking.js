@@ -12,9 +12,8 @@
 //     }
 //   }
 
-// pages/api/items.js
 import dbConnect from '../../lib/mongodb';
-import Item from '../../models/Item';
+import Parking from '../../models/ParkingSchema';
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -22,18 +21,19 @@ export default async function handler(req, res) {
   const { method } = req;
 
   switch (method) {
-    case 'GET':
-      try {
-        const items = await Item.find({});
-        res.status(200).json({ success: true, data: items });
-      } catch (error) {
-        res.status(400).json({ success: false });
-      }
-      break;
+    // case 'GET':
+    //   try {
+    //     const carData = await Parking.find({});
+    //     res.status(200).json({ success: true, data: carData });
+    //   } catch (error) {
+    //     res.status(400).json({ success: false });
+    //   }
+    //   break;
     case 'POST':
       try {
-        const item = await Item.create(req.body);
-        res.status(201).json({ success: true, data: item });
+        const carData = await {"licensePlate": req.body.licensePlate, "carType": req.body.type}
+        console.log("Yes the data is here: " + carData.licensePlate + " " + carData.carType);
+        res.status(201).json({ success: true, data: carData });
       } catch (error) {
         res.status(400).json({ success: false });
       }
