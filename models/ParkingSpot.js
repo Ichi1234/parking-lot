@@ -20,15 +20,18 @@ class ParkingSpot {
 
     setVehicle(vehicle) {
         this.vehicle = vehicle;
-        return {"spotID": this.spotNumber, "floor": this.level.floor, "licensePlate": this.vehicle.licensePlate, "carType": this.vehicle.getVehicleName()}
+        if (vehicle != null) {
+            return {"spotID": this.spotNumber, "floor": this.level.floor, "licensePlate": this.vehicle.licensePlate, "carType": this.vehicle.getVehicleName()}
+        }
     }
 
     sentDataToFrontend() {
         return {
-            floor: this.level.floor + 1,
-            row: this.row + 1,
-            spotID: this.spotNumber + 1,
+            floor: this.level.floor,
+            row: this.row,
+            spotID: this.spotNumber,
             spotSize: this.spotSize,
+            licensePlate: this.vehicle ? this.vehicle.licensePlate : "-",
             carType: this.vehicle ? this.vehicle.getVehicleName() : "Empty"
         };
     }

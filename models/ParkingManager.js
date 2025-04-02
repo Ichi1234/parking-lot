@@ -23,6 +23,10 @@ class ParkingManager {
        return this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
     }
 
+    removeParkingVehicle(spotData) {
+        this.lot.removeParkingVehicle(spotData);
+    }
+
     insertSpotsFromData(spotData) {
         for (let spot of spotData) {
             // console.log(this.eachCarType[spot.carType]);

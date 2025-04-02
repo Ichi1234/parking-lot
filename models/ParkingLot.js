@@ -13,22 +13,21 @@ class ParkingLot {
 
     parkVehicle(vehicle) {
         for (let l = 0; l < this.levels.length; l++) {
-            if (this.levels[l].isNotFull()) {
-                let parked = this.levels[l].parkVehicle(vehicle);
+            let parked = this.levels[l].parkVehicle(vehicle);
 
-                if (parked) {
-                    return parked;
-                }
-                console.log("Level: " + l + " don't have the space for " + vehicle.getVehicleName())
-            
-                if (l == this.levels.length - 1) {
-                    console.log("My parking spot doesn't have room for your car. Please disappear into the void.")
-                }
-
-                else {
-                    console.log("Level: " + l + " is full. GO TO NEXT THE FLOOR REEEEEEEE");
-                }
+            if (parked) {
+                return parked;
             }
+            console.log("Level: " + l + " don't have the space for " + vehicle.getVehicleName())
+        
+            if (l == this.levels.length - 1) {
+                console.log("My parking spot doesn't have room for your car. Please disappear into the void.")
+            }
+
+            else {
+                console.log("Level: " + l + " is full. GO TO NEXT THE FLOOR REEEEEEEE");
+            }
+            
         }
 
         return false;
@@ -40,6 +39,10 @@ class ParkingLot {
             eachLevelSpots.push(this.levels[l].sentDataToFrontend()); 
         }
         return eachLevelSpots;
+    }
+
+    removeParkingVehicle(spot) {
+        this.levels[spot.floor].removeParkingVehicle(spot.spotID);
     }
 
     insertSpots(spot, vehicle) {

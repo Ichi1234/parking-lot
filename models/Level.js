@@ -5,7 +5,6 @@ class Level {
     constructor(flr, numberSpots) {
         this.floor = flr;
         this.spots = [];
-        this.availableSpots = numberSpots;
 
         let SPOTS_PER_ROW = 10;
         let largeSpots = numberSpots / 4;
@@ -25,14 +24,10 @@ class Level {
         }
     }
 
-    isNotFull() {
-        return this.availableSpots > 0;
-    }
 
     parkVehicle(vehicle) {
         for (let s = 0; s < this.spots.length; s++) {
             if (vehicle.canFitInSpot(this.spots[s]) && this.spots[s].getVehicle() == null) {
-                this.availableSpots--;
                 return this.spots[s].setVehicle(vehicle);
 
             }
@@ -41,8 +36,11 @@ class Level {
     }
 
     insertSpots(spotID, vehicle) {
-        this.availableSpots--;
         this.spots[spotID].setVehicle(vehicle);
+    }
+
+    removeParkingVehicle(spotID) {
+        this.spots[spotID].setVehicle(null);
     }
 
     print() {
