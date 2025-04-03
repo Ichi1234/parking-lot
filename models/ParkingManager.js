@@ -13,6 +13,17 @@ class ParkingManager {
         return ParkingManager.instance;
     }
 
+    initializeLot() {
+        this.lot = new ParkingLot();
+        this.eachCarType = {"Car": Car, "Bus": Bus, "Motorcycle": Motorcycle};
+    }
+
+    clearAllData() {
+        // Reset internal state directly instead of creating a new instance
+        this.lot.clearAllData();
+    }
+
+
     displayTheSpot() {
         return this.lot.sentDataToFrontend();
     }
@@ -44,3 +55,8 @@ class ParkingManager {
 }
 
 module.exports = new ParkingManager();
+
+const yes = new ParkingManager()
+yes.test()
+yes.clearAllData()
+yes.lot.print()

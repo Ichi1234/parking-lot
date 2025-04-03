@@ -14,6 +14,11 @@ class ParkingSpot {
         return this.spotSize;
     }
 
+    clearAllData() {
+        this.vehicle = null;
+        console.log("FUCKING WORK")
+    }
+
     getVehicle() {
         return this.vehicle
     }

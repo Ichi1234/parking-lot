@@ -10,6 +10,11 @@ class ParkingLot {
             this.levels.push(new Level(i, this.NUM_SPOT_EACH_LEVEL));
         }
     }
+    clearAllData() {
+        for (let l = 0; l < this.levels.length; l++) {
+            this.levels[l].clearAllData();
+        }
+    }
 
     parkVehicle(vehicle) {
         for (let l = 0; l < this.levels.length; l++) {

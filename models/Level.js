@@ -24,7 +24,11 @@ class Level {
         }
     }
 
-
+    clearAllData() {
+        for (let s = 0; s < this.spots.length; s++) {
+            this.spots[s].clearAllData();
+        }
+    }
     parkVehicle(vehicle) {
         for (let s = 0; s < this.spots.length; s++) {
             if (vehicle.canFitInSpot(this.spots[s]) && this.spots[s].getVehicle() == null) {
