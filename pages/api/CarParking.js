@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const carData = {"licensePlate": req.body.licensePlate, "carType": req.body.carType}
-        console.log("Yes the data is here: " + carData.licensePlate + " " + carData.carType);
+        // console.log("Yes the data is here: " + carData.licensePlate + " " + carData.carType);
         
         const dataForMongo = ParkingManager.addParkingSpot(carData.licensePlate, carData.carType);
 

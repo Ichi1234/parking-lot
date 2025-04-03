@@ -29,7 +29,7 @@ class ParkingManager {
     }
 
     addParkingSpot(licensePlate, carType) {
-       console.log(carType); 
+    //    console.log(carType); 
        return this.lot.parkVehicle(new this.eachCarType[carType](licensePlate));
     }
 
@@ -55,8 +55,3 @@ class ParkingManager {
 }
 
 module.exports = new ParkingManager();
-
-const yes = new ParkingManager()
-yes.test()
-yes.clearAllData()
-yes.lot.print()
