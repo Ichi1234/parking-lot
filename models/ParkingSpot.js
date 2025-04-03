@@ -16,7 +16,7 @@ class ParkingSpot {
 
     clearAllData() {
         this.vehicle = null;
-\    }
+    }
 
     getVehicle() {
         return this.vehicle
