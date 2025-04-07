@@ -74,6 +74,13 @@ export default function ParkingForm() {
     fetchItems();
   };
 
+  const handleAlienClick = () => {
+    const alienSound = new Audio("/alien2.mp3");
+    alienSound.play();
+  
+    setShowImage(!showImage);
+  };
+
   return (
     <div className="bg-gray-900 pd-60 flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-center text-4xl py-8">Car Parking Simulator</h1>
@@ -106,7 +113,7 @@ export default function ParkingForm() {
         </div>
 
         {/* Alien Button */}
-        <button onClick={() => setShowImage(!showImage)} className="px-4 py-1 bg-green-500 text-white rounded">Alien</button>
+        <button onClick={handleAlienClick} className="px-4 py-1 bg-green-500 text-white rounded">Alien</button>
 
         {/* Image Display with onAnimationComplete */}
         <AnimatePresence>
