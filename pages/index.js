@@ -45,7 +45,7 @@ export default function ParkingForm() {
       
       // Wait a little to ensure the white screen is visible
       setTimeout(() => {
-        throw new Error("Alien invasion caused system failure!");
+        router.refresh();
       }, 1500);
     } catch (error) {
       throw new Error("Alien invasion caused system failure!");
